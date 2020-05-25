@@ -63,27 +63,23 @@ def get_cpu_tempfunc():
     return str(result)
 
 def get_coordfunc():
-    
-    coord=GPSmodule()
-    
+    coord=GPSModule()
     try:
         result = coord.getCoord()
     except:
         result = 0
         print("error on gps")
    
-    return result
+    return str(result)
 
 def get_gyrofunc():
-    
     gyro=Gyro()
-    
     try:
        result = gyro.getOrientation()
     except:
        result =  "XX"
        print("error on gyro") 
-    return result
+    return  (result)
 
 def get_gpu_tempfunc():
     """ Return GPU temperature as a character string"""
@@ -127,8 +123,8 @@ def info_send_client():
     print(SERVER_ADDR)
     while 1:
         try:
-            #print(get_coordfunc())
-            Info_Socket.send((get_cpu_tempfunc()+' '+get_cpu_use()+' '+get_ram_info()+' '+get_coordfunc()+' ' + get_gyrofunc()).encode())
+            print(get_coordfunc())
+            #Info_Socket.send((get_cpu_tempfunc()+' '+get_cpu_use()+' '+get_ram_info()+' '+get_coordfunc()+' ' + get_gyrofunc()).encode())
             time.sleep(1)
         except:
             #print("exception on data")
