@@ -20,8 +20,8 @@ import psutil
 import servo
 import LED
 import findline
-from gps import GPSmodule
-from mpu9250 import Gyro
+#import gps
+#import mpu9250
 
 step_set = 1
 speed_set = 100
@@ -62,24 +62,6 @@ def get_cpu_tempfunc():
     result = round(result, 1)
     return str(result)
 
-def get_coordfunc():
-    coord=GPSModule()
-    try:
-        result = coord.getCoord()
-    except:
-        result = 0
-        print("error on gps")
-   
-    return str(result)
-
-def get_gyrofunc():
-    gyro=Gyro()
-    try:
-       result = gyro.getOrientation()
-    except:
-       result =  "XX"
-       print("error on gyro") 
-    return  (result)
 
 def get_gpu_tempfunc():
     """ Return GPU temperature as a character string"""
@@ -123,11 +105,9 @@ def info_send_client():
     print(SERVER_ADDR)
     while 1:
         try:
-            print(get_coordfunc())
-            #Info_Socket.send((get_cpu_tempfunc()+' '+get_cpu_use()+' '+get_ram_info()+' '+get_coordfunc()+' ' + get_gyrofunc()).encode())
+            Info_Socket.send((get_cpu_tempfunc()+' '+get_cpu_use()+' '+get_ram_info()).encode())
             time.sleep(1)
         except:
-            #print("exception on data")
             pass
 
 

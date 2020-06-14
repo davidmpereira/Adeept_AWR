@@ -40,8 +40,12 @@ ultrasonicMode = 0
 FindLineMode = 0
 FindColorMode = 0
 
-SportModeOn = 0
+SportModeOn = 1
 SpeedBase = 70
+
+#Add GPS and Gyro data
+coord=GPSmodule()
+gyro=Gyro()
 
 
 def findline_thread():       #Line tracking mode
@@ -64,26 +68,22 @@ def get_cpu_tempfunc():
 
 def get_coordfunc():
     
-    coord=GPSmodule()
-    
     try:
         result = coord.getCoord()
     except:
         result = 0
-        print("error on gps")
+        #print("error on gps")
    
-    return result
+    return str(result)
 
 def get_gyrofunc():
-    
-    gyro=Gyro()
     
     try:
        result = gyro.getOrientation()
     except:
        result =  "XX"
-       print("error on gyro") 
-    return result
+       #print("error on gyro") 
+    return  (result)
 
 def get_gpu_tempfunc():
     """ Return GPU temperature as a character string"""
@@ -161,7 +161,7 @@ def FPV_thread():
     fpv.capture_thread(addr[0])
 
 
-def  ap_thread():
+def ap_thread():
     os.system("sudo create_ap wlan0 eth0 AdeeptCar 12345678")
 
 
@@ -190,6 +190,7 @@ def run():
     Y_pitch = 0
     Y_pitch_MAX = 200
     Y_pitch_MIN = -200
+    
 
     while True: 
         data = ''

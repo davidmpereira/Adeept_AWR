@@ -6,11 +6,6 @@ import sys                  #import system package
 
 class Gyro:
     
-    def __init__(self):
-        super().__init__()
-        
-    
-    def getOrientation(self):
         mpu = MPU9250(
         address_ak=AK8963_ADDRESS, 
         address_mpu_master=MPU9050_ADDRESS_68, # In 0x68 Address
@@ -21,13 +16,22 @@ class Gyro:
         mfs=AK8963_BIT_16, 
         mode=AK8963_MODE_C100HZ)
     
-        mpu.configure() # Apply the settings to the registers.
+        def __init__(self):
+            super().__init__()
+
+            self.mpu2 = self.mpu
+            
     
-        result = mpu.readMagnetometerMaster()
-    
-        degree=round(90-atan2(result[1],result[0])*180/pi,1)
         
-        return(str(degree))
+        def getOrientation(self):
+            
+            self.mpu2.configure # Apply the settings to the registers.
+
+            result = self.mpu2.readMagnetometerMaster()
+        
+            degree=atan2(result[1],result[0])*(180/pi)
+        
+            return(str(degree))
 
 #mpu = MPU9250(
    # address_ak=AK8963_ADDRESS, 

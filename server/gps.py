@@ -49,7 +49,7 @@ class GPSmodule:
             bFlag = False
             lat_in_degrees = 0
             long_in_degrees = 0
-            print("Error on coord")
+            #print("Error on coord")
         
         result = str(lat_in_degrees)+","+str(long_in_degrees)
         return result
@@ -83,6 +83,6 @@ def convert_to_degrees(raw_value):
     degrees = int(decimal_value)
     mm_mmmm = (decimal_value - int(decimal_value))/0.6
     position = degrees + mm_mmmm
-    print("pos res=" + str(position))
+    #print("pos res=" + str(position))
     position = "%.4f" %(position)
     return position

@@ -17,6 +17,7 @@ import time
 import threading as thread
 import tkinter as tk
 
+
 ip_stu=1        #Shows connection status
 c_f_stu = 0
 c_b_stu = 0
@@ -65,8 +66,9 @@ def opencv_r():
             img = base64.b64decode(frame)
             npimg = np.frombuffer(img, dtype=np.uint8)
             source = cv2.imdecode(npimg, 1)
-            cv2.putText(source,('PC FPS: %s'%fps),(40,20), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+            
             try:
+                cv2.putText(source,('PC FPS: %s'%fps),(40,20), font, 0.5,(255,255,255),1,cv2.LINE_AA)
                 cv2.putText(source,('CPU Temperature: %s'%CPU_TEP),(370,350), font, 0.5,(128,255,128),1,cv2.LINE_AA)
                 cv2.putText(source,('CPU Usage: %s'%CPU_USE),(370,380), font, 0.5,(128,255,128),1,cv2.LINE_AA)
                 cv2.putText(source,('RAM Usage: %s'%RAM_USE),(370,410), font, 0.5,(128,255,128),1,cv2.LINE_AA)
@@ -585,20 +587,20 @@ def loop():                      #GUI
         Btn2.bind('<ButtonRelease-1>', call_Turn_stop)
         Btn3.bind('<ButtonRelease-1>', call_Turn_stop)
 
-        root.bind('<KeyPress-w>', call_forward) 
-        root.bind('<KeyPress-a>', call_Left)
-        root.bind('<KeyPress-d>', call_Right)
-        root.bind('<KeyPress-s>', call_back)
+        root.bind('<KeyPress-Up>', call_forward) 
+        root.bind('<KeyPress-Left>', call_Left)
+        root.bind('<KeyPress-Right>', call_Right)
+        root.bind('<KeyPress-Down>', call_back)
 
         root.bind('<KeyPress-q>', call_LeftSide)
         root.bind('<KeyPress-e>', call_RightSide)
         root.bind('<KeyRelease-q>', call_Turn_stop)
         root.bind('<KeyRelease-e>', call_Turn_stop)
 
-        root.bind('<KeyRelease-w>', call_FB_stop)
-        root.bind('<KeyRelease-a>', call_Turn_stop)
-        root.bind('<KeyRelease-d>', call_Turn_stop)
-        root.bind('<KeyRelease-s>', call_FB_stop)
+        root.bind('<KeyRelease-Up>', call_FB_stop)
+        root.bind('<KeyRelease-Left>', call_Turn_stop)
+        root.bind('<KeyRelease-Right>', call_Turn_stop)
+        root.bind('<KeyRelease-Down>', call_FB_stop)
 
         Btn_up = tk.Button(root, width=8, text='Up',fg=color_text,bg=color_btn,relief='ridge')
         Btn_down = tk.Button(root, width=8, text='Down',fg=color_text,bg=color_btn,relief='ridge')
