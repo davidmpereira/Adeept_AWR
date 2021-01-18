@@ -393,7 +393,7 @@ def socket_connect():     #Call this function to connect with the server
     
     SERVER_IP = ip_adr
     SERVER_PORT = 10223   #Define port serial 
-    BUFSIZ = 1024         #Define buffer size
+    BUFSIZ = 2048         #Define buffer size
     ADDR = (SERVER_IP, SERVER_PORT)
     tcpClicSock = socket(AF_INET, SOCK_STREAM) #Set connection value for socket
 

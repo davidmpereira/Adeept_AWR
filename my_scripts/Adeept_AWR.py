@@ -30,7 +30,7 @@ tcpClicSock = ''
 root = ''
 stat = 0
 
-ultra_data = 'Ultrasonic OFF'
+ultra_data = 'Ultrasonic ON'
 
 SportModeOn = 0
 
@@ -49,7 +49,9 @@ def video_thread():
     fps = 0
 
 def get_FPS():
+
     global frame_num, fps
+
     while 1:
         try:
             time.sleep(1)
@@ -351,6 +353,9 @@ def Info_receive():
             if "," in GPS:
                 GPSLAT = GPS.split(",")[0]
                 GPSLON = GPS.split(",")[1]
+            else:
+                GPSLAT = "00"
+                GPSLON = "00"
             
             #print('cpu_tem:%s\ncpu_use:%s\nram_use:%s'%(CPU_TEP,CPU_USE,RAM_USE))
             CPU_TEP_lab.config(text='CPU Temp: %s℃'%CPU_TEP)
@@ -407,7 +412,7 @@ def socket_connect():     #Call this function to connect with the server
     
     SERVER_IP = ip_adr
     SERVER_PORT = 10223   #Define port serial 
-    BUFSIZ = 1024         #Define buffer size
+    BUFSIZ = 2048        #Define buffer size
     ADDR = (SERVER_IP, SERVER_PORT)
     tcpClicSock = socket(AF_INET, SOCK_STREAM) #Set connection value for socket
 

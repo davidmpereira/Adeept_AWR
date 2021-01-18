@@ -69,8 +69,8 @@ def get_cpu_tempfunc():
 def get_coordfunc():
     
     try:
-        #result = coord.getCoord()
-        result = 0
+        result = coord.getCoord()
+        #result = 0
     except:
         result = 0
         #print("error on gps")
@@ -117,7 +117,7 @@ def info_get():
         cpu_t = get_cpu_tempfunc()
         cpu_u = get_cpu_use()
         ram_info = get_ram_info()
-        time.sleep(3)
+        time.sleep(10)
 
 
 def info_send_client():
@@ -131,7 +131,7 @@ def info_send_client():
         try:
             #print(get_coordfunc())
             Info_Socket.send((get_cpu_tempfunc()+' '+get_cpu_use()+' '+get_ram_info()+' '+get_coordfunc()+' ' + get_gyrofunc()).encode())
-            time.sleep(1)
+            time.sleep(2)
         except:
             #print("exception on data")
             pass
