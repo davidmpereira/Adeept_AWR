@@ -259,45 +259,50 @@ def all_btn_normal():
 def connection_thread():
     global funcMode, ultrasonicMode, canvas_rec, canvas_text, SportModeOn
     while 1:
-        car_info = (tcpClicSock.recv(BUFSIZ)).decode()
-        if not car_info:
-            continue
 
-        elif 'SportModeOn' in car_info:
-            SportModeOn = 1
-            Btn_GT.config(bg='#00E676')
+            try:
+                car_info = (tcpClicSock.recv(BUFSIZ)).decode()
+        
+                if not car_info:
+                    continue
 
-        elif 'SportModeOff' in car_info:
-            SportModeOn = 0
-            Btn_GT.config(bg='#F44336')
+                elif 'SportModeOn' in car_info:
+                    SportModeOn = 1
+                    Btn_GT.config(bg='#00E676')
 
-        elif 'FindColor' in car_info:
-            funcMode = 1
-            all_btn_red()
-            Btn_FindColor.config(bg='#00E676')
+                elif 'SportModeOff' in car_info:
+                    SportModeOn = 0
+                    Btn_GT.config(bg='#F44336')
 
-        elif 'steady' in car_info:
-            funcMode = 1
-            all_btn_red()
-            Btn_Steady.config(bg='#00E676')
+                elif 'FindColor' in car_info:
+                    funcMode = 1
+                    all_btn_red()
+                    Btn_FindColor.config(bg='#00E676')
 
-        elif 'WatchDog' in car_info:
-            funcMode = 1
-            all_btn_red()
-            Btn_WatchDog.config(bg='#00E676')
+                elif 'steady' in car_info:
+                    funcMode = 1
+                    all_btn_red()
+                    Btn_Steady.config(bg='#00E676')
 
-        elif 'FindLine' in car_info:
-            funcMode = 1
-            all_btn_red()
-            Btn_Fun4.config(bg='#00E676')
+                elif 'WatchDog' in car_info:
+                    funcMode = 1
+                    all_btn_red()
+                    Btn_WatchDog.config(bg='#00E676')
 
-        elif 'FunEnd' in car_info:
-            funcMode = 0
-            all_btn_normal()
-            ultrasonicMode = 0
-            canvas_rec=canvas_ultra.create_rectangle(0,0,352,30,fill = color_btn,width=0)
-            canvas_text=canvas_ultra.create_text((90,11),text='Ultrasonic OFF',fill=color_text)
+                elif 'FindLine' in car_info:
+                    funcMode = 1
+                    all_btn_red()
+                    Btn_Fun4.config(bg='#00E676')
 
+                elif 'FunEnd' in car_info:
+                    funcMode = 0
+                    all_btn_normal()
+                    ultrasonicMode = 0
+                    canvas_rec=canvas_ultra.create_rectangle(0,0,352,30,fill = color_btn,width=0)
+                    canvas_text=canvas_ultra.create_text((90,11),text='Ultrasonic OFF',fill=color_text)
+
+            except TimeoutError:
+                socket_connect()
 
 def instruction():
     instructions = []
