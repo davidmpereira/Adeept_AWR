@@ -41,7 +41,7 @@ FindLineMode = 0
 FindColorMode = 0
 
 SportModeOn = 0
-SpeedBase = 50
+SpeedBase = 70
 
 #Add GPS and Gyro data
 coord=GPSmodule()
@@ -117,7 +117,7 @@ def info_get():
         cpu_t = get_cpu_tempfunc()
         cpu_u = get_cpu_use()
         ram_info = get_ram_info()
-        time.sleep(10)
+        time.sleep(3)
 
 
 def info_send_client():
@@ -306,7 +306,7 @@ if __name__ == '__main__':
 
     HOST = ''
     PORT = 10223                              #Define port serial 
-    BUFSIZ = 2048                             #Define buffer size
+    BUFSIZ = 8192                            #Define buffer size
     ADDR = (HOST, PORT)
 
     try:

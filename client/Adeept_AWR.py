@@ -40,7 +40,7 @@ def video_thread():
     context = zmq.Context()
     footage_socket = context.socket(zmq.SUB)
     footage_socket.bind('tcp://*:5555')
-    footage_socket.setsockopt_string(zmq.SUBSCRIBE, np.unicode(''))
+    footage_socket.setsockopt_string(zmq.SUBSCRIBE, str(''))
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
