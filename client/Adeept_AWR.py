@@ -34,7 +34,6 @@ ultra_data = 'Ultrasonic OFF'
 SportModeOn = 0
 
 ########>>>>>VIDEO<<<<<########
-
 def video_thread():
     global footage_socket, font, frame_num, fps
     context = zmq.Context()
