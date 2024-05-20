@@ -86,11 +86,11 @@ def opencv_r():
             break
 
 fps_threading=thread.Thread(target=get_FPS)         #Define a thread for FPV and OpenCV
-fps_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+fps_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
 fps_threading.start()                                     #Thread starts
 
 video_threading=thread.Thread(target=video_thread)         #Define a thread for FPV and OpenCV
-video_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+video_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
 video_threading.start()                                     #Thread starts
 
 ########>>>>>VIDEO<<<<<########
@@ -420,21 +420,21 @@ def socket_connect():     #Call this function to connect with the server
             ip_stu=0                         #'0' means connected
 
             connection_threading=thread.Thread(target=connection_thread)         #Define a thread for FPV and OpenCV
-            connection_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+            connection_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
             connection_threading.start()                                     #Thread starts
 
             info_threading=thread.Thread(target=Info_receive)         #Define a thread for FPV and OpenCV
-            info_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+            info_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
             info_threading.start()                                     #Thread starts
 
 
             ultra_threading=thread.Thread(target=ultra_receive)         #Define a thread for FPV and OpenCV
-            ultra_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+            ultra_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
             ultra_threading.start()                                     #Thread starts
 
 
             video_threading=thread.Thread(target=opencv_r)         #Define a thread for FPV and OpenCV
-            video_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+            video_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
             video_threading.start()                                     #Thread starts
 
             break
@@ -455,14 +455,14 @@ def socket_connect():     #Call this function to connect with the server
 def connect(event):       #Call this function to connect with the server
     if ip_stu == 1:
         sc=thread.Thread(target=socket_connect) #Define a thread for connection
-        sc.setDaemon(True)                      #'True' means it is a front thread,it would close when the mainloop() closes
+        sc.daemon = True                     #'True' means it is a front thread,it would close when the mainloop() closes
         sc.start()                              #Thread starts
 
 
 def connect_click():       #Call this function to connect with the server
     if ip_stu == 1:
         sc=thread.Thread(target=socket_connect) #Define a thread for connection
-        sc.setDaemon(True)                      #'True' means it is a front thread,it would close when the mainloop() closes
+        sc.daemon = True                     #'True' means it is a front thread,it would close when the mainloop() closes
         sc.start()                              #Thread starts
 
 
@@ -685,7 +685,7 @@ def loop():                      #GUI
         Btn_Fun6.bind('<ButtonPress-1>', call_WatchDog)
 
         ins_threading=thread.Thread(target=instruction)         #Define a thread for FPV and OpenCV
-        ins_threading.setDaemon(True)                             #'True' means it is a front thread,it would close when the mainloop() closes
+        ins_threading.daemon = True                            #'True' means it is a front thread,it would close when the mainloop() closes
         ins_threading.start()                                     #Thread starts
         global stat
         if stat==0:              # Ensure the mainloop runs only once
